@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np 
 from sklearn.neighbors import KNeighborsRegressor
 
-input = np.genfromtxt('C:\AI course\Datasets\machine.data', delimiter=',', usecols=(2, 3, 4, 5, 6, 7))
-output = np.genfromtxt('C:\AI course\Datasets\machine.data', delimiter=',', usecols=(8))
+input = np.genfromtxt('C:\AI Projects\AI_Datasets\machine.data', delimiter=',', usecols=(2, 3, 4, 5, 6, 7))
+output = np.genfromtxt('C:\AI Projects\AI_Datasets\machine.data', delimiter=',', usecols=(8))
 
 K = 3
 

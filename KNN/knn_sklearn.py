@@ -10,7 +10,7 @@ from sklearn.neighbors import KNeighborsClassifier
 input, output = [], []
 
 
-with open('C:\AI course\Datasets\movies.data', 'r') as file:
+with open('C:\AI Projects\AI_Datasets\movies.data', 'r') as file:
     for line in file.readlines():
         atrb = line.replace('\n', '').split(',')
         input.append([float(atrb[0]), float(atrb[1]), float(atrb[2]), float(atrb[3])])

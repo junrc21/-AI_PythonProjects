@@ -2,8 +2,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 
-input = np.genfromtxt('C:\AI course\Datasets\movies.data', delimiter=',', usecols=(0, 1, 2, 3))
-output = np.genfromtxt('C:\AI course\Datasets\movies.data', delimiter=',', usecols=(4))
+input = np.genfromtxt('C:\AI Projects\AI_Datasets\movies.data', delimiter=',', usecols=(0, 1, 2, 3))
+output = np.genfromtxt('C:\AI Projects\AI_Datasets\movies.data', delimiter=',', usecols=(4))
 
 input_train, input_test, output_train, output_test = train_test_split(input, output, test_size=0.3, 
                                                                       random_state=42)

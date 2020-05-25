@@ -2,8 +2,10 @@ import pandas as pd
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 
+#load data from 2 files
 train_file = pd.read_csv('C:\AI Projects\AI_Datasets\shoes_train.csv', header=None)
 test_file = pd.read_csv('C:\AI Projects\AI_Datasets\shoes_test.csv', header=None)
+
 
 cols_output = pd['class']
 cols_input = train_file['shoe size', 'height']

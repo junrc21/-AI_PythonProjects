@@ -40,18 +40,28 @@ def knn(train_dset, test_dset, K):
     dists, train_size = {}, len(train_dset)
     
     for i in range(train_size):
+        #get euclidean distance value
         d = euclidean_dist(train_dset[i], test_dset)
+
+        #add distance to array
         dists[i] = d
-        
+
+        #get the keys of the K-nearest neighbors, the less distance (less value)
         k_nearest_neighbor = sorted(dists, key=dists.get)[:K]
-        
+
+        #inicialize lablels values
         Recommended_size, NotRecommended_size = 0, 0
+
+        #for each K-nearest neighbors found do:        
         for index in k_nearest_neighbor:
+            
+            #if the label (last element from array) is == 1 then icrease the label1, else increase label2 
             if train_dset[index][-1] == 1:
                 Recommended_size += 1
             else:
                 NotRecommended_size += 1
-        
+
+        #at the end, return wich label has more 
         if Recommended_size > NotRecommended_size:
             return 1
         else:
@@ -61,10 +71,13 @@ def knn(train_dset, test_dset, K):
 def info_dataset(dataset, verbose):
     if verbose:
         print('total of data: %d' % len(dataset))
-        
+
+    #create labels    
     Recommended,  NotRecommended = 0, 0
-        
+
+    #increase labels values according file label
     for data in dataset:
+        #get the lable (-1 means the last element)
         if data[-1] == 1:
             Recommended += 1
         else:
@@ -79,14 +92,22 @@ def info_dataset(dataset, verbose):
 #percentage of data for training
 percentage_train = 0.6
 
+#get label lenght for label1 and lablel2
 _, Recommended, NotRecommended = info_dataset(dataset, verbose=False)
 
+#create dataset arrays
 train_dset, test_dset = [], []
+
+#get the max values to get from file to use for training
 max_Recommended, max_NotRecommended = int(percentage_train * Recommended), int(percentage_train * NotRecommended)
    
 total_Recommended, total_NotRecommended = 0, 0
 
+#add values to the training and testing datasets
 for data in dataset:
+
+    #if total is not reached, can add more elements to traing dataset
+    #else, will add the rest to training dataset
     if (total_Recommended + total_NotRecommended) < (max_Recommended + max_NotRecommended):
         train_dset.append(data)
         
@@ -96,15 +117,17 @@ for data in dataset:
             total_NotRecommended += 1
     else:
         test_dset.append(data)
-        
 
+#set K value       
 hits, K = 0, 15
 
+#execute predict for each testing dataset element 
 for data in test_dset:
     result = knn(train_dset, data, K)
     if data[-1] == result:
         hits += 1
-        
+
+#print info
 print('total of train dataset: %d' % len(train_dset))
 print('Total of test dataset: %d' % len(test_dset))
 print('Total of hits: %d' % hits)
